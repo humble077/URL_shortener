@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Stats - HYPD Shortener</title>
+    <meta name="description" content="View detailed analytics and statistics for your shortened URLs.">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <img src="/favicon.ico" alt="HYPD Logo" class="nav-logo">
+            </div>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/stats" class="nav-link active">Stats</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        <span class="gradient-text">URL Analytics</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Enter your shortened URL to view detailed statistics and analytics.
+                    </p>
+                    
+                    <!-- Stats Form -->
+                    <div class="url-form-container">
+                        <form id="statsForm" class="url-form">
+                            <div class="input-group">
+                                <div class="input-wrapper">
+                                    <i class="fas fa-chart-line input-icon"></i>
+                                    <input 
+                                        type="text" 
+                                        id="statsUrlInput" 
+                                        class="url-input" 
+                                        placeholder="Enter your shortened URL here..."
+                                        required
+                                    >
+                                </div>
+                                <button type="submit" id="statsSubmitBtn" class="submit-btn">
+                                    <span class="btn-text">View Stats</span>
+                                    <i class="fas fa-arrow-right btn-icon"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Stats Results -->
+                    <div id="statsResults" class="stats-results hidden">
+                        <!-- URL Information Card -->
+                        <div class="stats-card">
+                            <div class="stats-card-header">
+                                <h3><i class="fas fa-link"></i> URL Information</h3>
+                            </div>
+                            <div class="stats-card-content">
+                                <div class="stats-item">
+                                    <label>Short Code:</label>
+                                    <span id="statsShortCode" class="stats-value"></span>
+                                </div>
+                                <div class="stats-item">
+                                    <label>Short URL:</label>
+                                    <a id="statsShortUrl" class="stats-link" href="#" target="_blank"></a>
+                                </div>
+                                <div class="stats-item">
+                                    <label>Original URL:</label>
+                                    <a id="statsOriginalUrl" class="stats-link" href="#" target="_blank"></a>
+                                </div>
+                                <div class="stats-item">
+                                    <label>Created:</label>
+                                    <span id="statsCreatedAt" class="stats-value"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Analytics Grid -->
+                        <div class="analytics-grid">
+                            <div class="analytics-card">
+                                <div class="analytics-icon">
+                                    <i class="fas fa-mouse-pointer"></i>
+                                </div>
+                                <div class="analytics-number" id="statsClickCount">0</div>
+                                <div class="analytics-label">Total Clicks</div>
+                            </div>
+                            <div class="analytics-card">
+                                <div class="analytics-icon">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                                <div class="analytics-number" id="statsFirstClick">N/A</div>
+                                <div class="analytics-label">First Click</div>
+                            </div>
+                            <div class="analytics-card">
+                                <div class="analytics-icon">
+                                    <i class="fas fa-history"></i>
+                                </div>
+                                <div class="analytics-number" id="statsLastClick">N/A</div>
+                                <div class="analytics-label">Last Click</div>
+                            </div>
+                            <div class="analytics-card">
+                                <div class="analytics-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="analytics-number" id="statsLastAccessed">N/A</div>
+                                <div class="analytics-label">Last Accessed</div>
+                            </div>
+                        </div>
+
+                        <!-- Product Information Card -->
+                        <div id="statsProductCard" class="stats-card hidden">
+                            <div class="stats-card-header">
+                                <h3><i class="fas fa-shopping-bag"></i> Product Information</h3>
+                            </div>
+                            <div class="stats-card-content">
+                                <div class="product-info-content">
+                                    <div class="product-image-container">
+                                        <img id="statsProductImage" class="product-image" src="" alt="Product Image">
+                                    </div>
+                                    <div class="product-details">
+                                        <h4 id="statsProductName" class="product-name"></h4>
+                                        <p id="statsBrandName" class="brand-name"></p>
+                                        <div class="product-price">
+                                            <span class="price-label">Price:</span>
+                                            <span id="statsProductPrice" class="price-value"></span>
+                                        </div>
+                                        <div class="product-id">
+                                            <span class="id-label">Product ID:</span>
+                                            <span id="statsProductId" class="id-value"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Actions Card -->
+                        <div class="stats-card">
+                            <div class="stats-card-header">
+                                <h3><i class="fas fa-tools"></i> Actions</h3>
+                            </div>
+                            <div class="stats-card-content">
+                                <div class="actions-grid">
+                                    <button id="copyOriginalBtn" class="action-btn">
+                                        <i class="fas fa-copy"></i>
+                                        <span>Copy Original URL</span>
+                                    </button>
+                                    <button id="copyShortBtn" class="action-btn">
+                                        <i class="fas fa-copy"></i>
+                                        <span>Copy Short URL</span>
+                                    </button>
+                                    <a id="visitOriginalBtn" href="#" target="_blank" class="action-btn">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        <span>Visit Original</span>
+                                    </a>
+                                    <a id="visitShortBtn" href="#" target="_blank" class="action-btn">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        <span>Visit Short URL</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="/favicon.ico" alt="HYPD Logo" class="footer-logo">
+                    <span>HYPD Shortener</span>
+                </div>
+                <div class="footer-links">
+                    <a href="/">Home</a>
+                    <a href="/stats">Stats</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 HYPD Shortener. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Loading statistics...</p>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast" class="toast hidden">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Action completed!</span>
+    </div>
+
+    <script src="/js/stats.js"></script>
+</body>
+</html>

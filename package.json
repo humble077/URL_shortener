@@ -1,0 +1,36 @@
+{
+  "name": "hypd-url-shortener",
+  "version": "1.0.0",
+  "description": "A simple URL shortener API with analytics",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "pm2:start": "sudo pm2 start ecosystem.config.js",
+    "pm2:stop": "sudo pm2 stop hypd-url-shortener",
+    "pm2:restart": "sudo pm2 restart hypd-url-shortener",
+    "pm2:delete": "sudo pm2 delete hypd-url-shortener",
+    "pm2:logs": "sudo pm2 logs hypd-url-shortener",
+    "pm2:status": "sudo pm2 status",
+    "pm2:monit": "sudo pm2 monit",
+    "test": "node test.js",
+    "test:product": "node test-product.js",
+    "test:analytics": "node test-analytics.js"
+  },
+  "keywords": ["url-shortener", "api", "nodejs", "postgresql"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "pg": "^8.11.3",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "express-rate-limit": "^7.1.5",
+    "validator": "^13.11.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "axios": "^1.6.2"
+  }
+}
