@@ -1,4 +1,4 @@
-# HYPd URL Shortener
+# HYPD URL Shortener
 
 A simple and efficient URL shortener API built with Node.js and PostgreSQL. This service allows you to shorten long URLs into compact, shareable links while tracking click statistics and analytics.
 
