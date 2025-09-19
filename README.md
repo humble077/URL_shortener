@@ -276,26 +276,6 @@ The API includes rate limiting to prevent abuse:
 - **Scope**: Applied to all `/api/*` endpoints
 - **Response**: `429 Too Many Requests` when limit exceeded
 
-## Project Structure
-
-```
-hypd_url_shortener/
-├── src/
-│   ├── server.js              # Main Express server
-│   ├── database/
-│   │   ├── connection.js      # Database connection and setup
-│   │   └── urls.js           # URL database operations
-│   ├── routes/
-│   │   └── urls.js           # API routes
-│   └── utils/
-│       └── shortCode.js      # Short code generation
-├── docker-compose.yml        # PostgreSQL Docker setup
-├── package.json             # Dependencies and scripts
-├── env.example              # Environment variables template
-├── test.js                  # API test script
-└── README.md               # This file
-```
-
 ## Security Features
 
 - **Domain Restriction**: Only hypd.store domain and subdomains are allowed
