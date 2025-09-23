@@ -8,7 +8,7 @@ function extractProductId(url) {
       return null;
     }
     
-    const pathMatch = urlObj.pathname.match(/\/hypd_store\/product\/([a-f0-9]+)/);
+    const pathMatch = urlObj.pathname.match(/\/[^\/]+\/product\/([a-f0-9]+)/);
     
     if (pathMatch && pathMatch[1]) {
       return pathMatch[1];
